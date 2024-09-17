@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from collections import defaultdict
 
 app = Flask(__name__)
@@ -32,6 +32,9 @@ def hello_priyanka():
         articles_by_year[article['year']].append(article)
     sorted_years = sorted(articles_by_year.keys(), reverse=True)
     return render_template('home.html', articles_by_year=articles_by_year, years=sorted_years)
+@app.route("/api/articles")
+def list_articles():
+    return jsonify(ARTICLES)
 
 print(__name__)
 if __name__ == '__main__':
