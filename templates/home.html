@@ -37,8 +37,8 @@
         font-weight:500;
         color: rgb(50, 50, 50);
         text-align: left;
-        padding-top: 24px;
-        padding-left: 64px;
+        padding-top: auto;
+        padding-left: auto;
       }
       .text{
         font-size:16px;
@@ -56,39 +56,58 @@
         padding-bottom: 2px;
         text-align: left;
       }
-      .rectangle {
-        width: 720px;
-        height: 120px;
-        background-color: #f0f0f0 ;
-        border-width: 0.5px;
-        border-radius: 12px;
-        border-color: #323131;
-        border-style: solid;
-        text-align:left;
-        margin: 0 auto;
-      }
+      
       #container {
        max-width: 800px;
        margin: 0 auto 0 auto;
      }
-      .social-icons {
-        margin-top: 10px;
-        margin-left: 56px;
-      }
+      .rectangle {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
 
-      .social-icons a {
-        color: #323131;
-        margin: 0 10px;
-        text-decoration: none;
-        font-size: 24px;
-      }
-      .social-icons .bi-youtube {
-        font-size: 28px; /* Custom size for YouTube */
-      }
-      .social-icons a:hover {
-        color: #007bff; /* Change color on hover */
-      }
-      }
+    .rectangle h3 {
+    margin-bottom: 15px;
+    }
+
+    .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    }
+
+    .social-icons a {
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+    }
+
+   .social-icons a:hover {
+    transform: scale(1.1);
+    filter: brightness(0) saturate(100%) invert(23%) sepia(90%) saturate(1720%) hue-rotate(201deg) brightness(97%) contrast(101%);
+    }
+
+    .social-icons img {
+    width: 20px;
+    height: 20px;
+    }
+
+    @media (max-width: 768px) {
+    .rectangle {
+        padding: 15px;
+    }
+    
+    .social-icons img {
+        width: 18px;
+        height: 18px;
+    }
+    }
+    
       
     </style>
   </head>
@@ -99,13 +118,18 @@
      <p>I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge </p>
 
       <div class="rectangle">
-         <h3> Social media accounts, where I post all my 
-         happenings </h3>
+        <h3 style="padding-left: 64px">Social media accounts, where I post all my happenings</h3>
          <div class="social-icons">
-           <a href="https://www.instagram.com/priyankapudi.in/"><i class="bi bi-instagram"></i></a>
-           <a href="#"><i class="bi bi-twitter-x"></i></a>
-           <a href="#"><i class="bi bi-youtube"></i></a>
-         </div>
+        <a href="https://www.instagram.com/priyankapudi.in/" target="_blank" rel="noopener noreferrer">
+            <img src="/static/instagram.svg" alt="Instagram" />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="/static/twitter-x.svg" alt="Twitter" />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="/static/youtube.svg" alt="YouTube" />
+        </a>
+        </div>
       </div>
       <h2 style="margin-bottom:6px">
         All the posts and essays
@@ -119,5 +143,6 @@
         {% endfor %}
       </div>
     </div>
+    {% include 'nav.html' %}
     </body>
 </html>
