@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="container">
+    <h1>{{ page.meta.title }}</h1>
+    <p>Date: {{ page.meta.date.strftime('%B %d, %Y') }}</p>
+    <p>Genre: {{ page.meta.genre }}</p>
+
+    <article>
+        {{ page.html|safe }}
+    </article>
+
+    <a href="{{ url_for('hello_priyanka') }}">Back to Home</a>
+</div>
+{% endblock %}
