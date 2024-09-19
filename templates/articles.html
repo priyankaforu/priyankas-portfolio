@@ -1,0 +1,11 @@
+<div style="display: flex; align-items: baseline; margin-bottom: 6px;">
+  <div class="bullet"; style="display: inline-block; width: 6px; height: 6px; border: 1px solid #0066cc; border-radius: 50%;margin-right: 8px;"></div>
+  <div class="text">
+    {{article['title']}}
+  </div>
+  {% if 'Genre' in article %}
+    <div style="margin-left: 8px; font-style: italic; color: rgba(0,0,0,0.6);">
+      ({{article['Genre']}})
+    </div>
+  {% endif %}
+</div>
