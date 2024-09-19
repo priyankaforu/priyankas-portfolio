@@ -1,41 +1,34 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, request
+from flask_flatpages import FlatPages
+from datetime import datetime
 from collections import defaultdict
 
 app = Flask(__name__)
+app.config['FLATPAGES_EXTENSION'] = '.md'
+app.config['FLATPAGES_ROOT'] = 'content'
+pages = FlatPages(app)
 
-ARTICLES = [
-    {
-        'id': 1,
-        'title' : 'Transformation of UX design',
-        'Genre' : 'Tech & Design',
-        'year'  : 2024
-    },
-    {
-        'id': 2,
-        'title' : 'The stoic philosophy in leading adventurous life',
-        'Genre' : 'Philosophy',
-        'year'  : 2023
-    },
-    {
-        'id': 3,
-        'title' : 'Machine learning modules',
-        'Genre' : 'ML and AI',
-        'year'  : 2024
-    }
-
-]
+def get_articles_by_year():
+    articles_by_year = defaultdict(list)
+    for page in pages:
+        if 'date' in page.meta:
+            year = page.meta['date'].year
+            articles_by_year[year].append({
+                'title': page.meta.get('title', 'Untitled'),
+                'genre': page.meta.get('genre', ''),
+                'path': page.path
+            })
+    return dict(sorted(articles_by_year.items(), reverse=True))
 
 @app.route('/')
 def hello_priyanka():
-    articles_by_year = defaultdict(list)
-    for article in ARTICLES:
-        articles_by_year[article['year']].append(article)
-    sorted_years = sorted(articles_by_year.keys(), reverse=True)
-    return render_template('home.html', articles_by_year=articles_by_year, years=sorted_years)
-@app.route("/api/articles")
-def list_articles():
-    return jsonify(ARTICLES)
+    articles_by_year = get_articles_by_year()
+    return render_template('home.html', articles_by_year=articles_by_year)
 
-print(__name__)
+@app.route('/<path:path>/')
+def post(path):
+    page = pages.get_or_404(path)
+    return render_template('post.html', page=page)
+
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
