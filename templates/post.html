@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="container">
-    <h1>{{ page.meta.title }}</h1>
-    <p>Date: {{ page.meta.date.strftime('%B %d, %Y') }}</p>
-    <p>Genre: {{ page.meta.genre }}</p>
 
-    <article>
+<div id="container" class="container mt-5">
+    <h1 class="mb-3"; style="text-align: center">{{ page.meta.title }}</h1>
+    
+    <div class="post-meta mb-4"; style="text-align: center; font-style: italic; color: #666">
+        <span class="date me-3"; style="font-size:0.9em">{{ page.meta.date.strftime('%B %d, %Y') }}</span>
+        <span class="genre">{{ page.meta.genre }}</span>
+    </div>
+
+    <div class="post-content">
         {{ page.html|safe }}
-    </article>
+    </div>
 
-    <a href="{{ url_for('hello_priyanka') }}">Back to Home</a>
+    <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
 </div>
+
 {% endblock %}
