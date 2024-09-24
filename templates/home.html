@@ -2,44 +2,40 @@
 {% block content %}
 <div class="text-center">
     <h1 class="mb-5">Hey! This is Priyanka Pudi</h1>
-    <p class="mb-3">I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge</p>
-
-    <div class="social-box mb-5 border-radius: 12px">
-        <h3 class="mb-3 fs-5">Social media accounts, where I post all my happenings</h3>
+    <p class="mb-3"; style="color:black; font-size: 16px">I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge</p>
+    
+    <div class="social-box mb-5">
+        <h3 class="mb-3 fs-5"; style="font-weight:800">Social media accounts, where I post all my happenings</h3>
         <div class="d-flex justify-content-center gap-4">
-            <a href="https://www.instagram.com/priyankapudi.in/" target="_blank" rel="noopener noreferrer" class="social-icon">
-                <img src="{{ url_for('static', filename='instagram.svg') }}" alt="Instagram" width="24" height="24">
+            <a href="https://www.instagram.com/priyankapudi.in/" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='instagram.svg') }}" width="24" height="24" alt="Instagram">
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon">
-                <img src="{{ url_for('static', filename='twitter-x.svg') }}" alt="Twitter" width="24" height="24">
+            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='twitter-x.svg') }}" width="24" height="24" alt="Twitter">
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon">
-                <img src="{{ url_for('static', filename='youtube.svg') }}" alt="YouTube" width="24" height="24">
+            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='youtube.svg') }}" width="24" height="24" alt="YouTube">
             </a>
         </div>
     </div>
+</div>
 
-    <h2 class="mb-4"; style="text-align: left; font-size:24px; font-weight: 400; margin-left: 20px">All the posts and essays</h2>
+<h2 class="mb-4" style="text-align: left; font-size:24px; font-weight: 400; margin-left: 20px">All the posts and essays</h2>
 
-    {% for year, articles in articles_by_year.items() %}
-    <div class="mb-4">
-        <h3 class="h5 mb-1"; style="text-align: left; margin-left: 20px">{{ year }}</h3>
-        {% for article in articles %}
-        <div class="d-flex align-items-baseline mb-2 justify-content-left"; style="margin-left: 20px">
-            <div class="bullet me-2"></div>
-            <div class="text">
-                <a href="{{ url_for('post', path=article.path) }}" class="text-decoration-underline">{{ article.title }}</a>
-            </div>
-            {% if article.genre %}
-            <div class="genre ms-2">
-                ({{ article.genre }})
-            </div>
-            {% endif %}
+{% for year, articles in articles_by_year.items() %}
+<div class="mb-4">
+    <h3 class="h5 mb-1" style="text-align: left; margin-left: 20px">{{ year }}</h3>
+    {% for article in articles %}
+    <div class="d-flex align-items-baseline mb-2 justify-content-left" style="margin-left: 20px">
+        <div class="bullet me-2"></div>
+        <div class="text">
+            <a href="{{ url_for('post', path=article.path) }}" class="text-decoration-underline">{{ article.title }}</a>
         </div>
-        {% endfor %}
+        {% if article.genre %}
+        <div class="genre ms-2">({{ article.genre }})</div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
+{% endfor %}
 {% endblock %}
-
-
