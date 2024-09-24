@@ -8,12 +8,12 @@ body {
 }
 
 main {
-    
     flex: 1 0 auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
+    color: #000; /* Ensure headings are black for maximum opacity */
 }
 
 .container {
@@ -65,46 +65,94 @@ h1, h2, h3, h4, h5, h6 {
 
 footer {
     background-color: #333;
+    padding: 3rem 1rem; /* Increased vertical padding, reduced horizontal padding */
+    color: #fff;
+}
+
+footer .container {
+    max-width: 1200px; /* Increased max-width for a more spacious layout */
+    margin: 0 auto;
+}
+
+footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col-md-3 {
+    flex: 1;
+    min-width: 200px; /* Ensure columns don't get too narrow */
+    margin-bottom: 2rem;
+    padding: 0 1rem; /* Add some horizontal padding to each column */
 }
 
 footer h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    opacity: 1;
 }
 
 footer ul {
     padding-left: 0;
+    list-style-type: none;
+    margin-bottom: 1rem;
+}
+
+footer li {
+    margin-bottom: 0.5rem;
 }
 
 footer a {
     color: #fff;
     text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
     color: #f0f0f0;
     text-decoration: underline;
 }
+
 #monthSelector {
+    width: 100%;
     background-color: #444;
     color: #fff;
-    border: solid;
+    border: 1px solid #666;
     border-radius: 8px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-right: 20px; /* Add some padding for the custom arrow */
+    padding: 8px 28px 8px 12px;
+    font-size: 0.9rem;
     background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
     background-repeat: no-repeat;
     background-position: right 5px top 50%;
     background-size: 20px;
+    margin-top: 0.5rem;
 }
+
 #monthSelector::-ms-expand {
-    display: none; /* Remove default arrow in Internet Explorer */
+    display: none;
+}
+
+.border-top {
+    border-top: 1px solid #555 !important;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.text-center {
+    font-size: 0.9rem;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
+    footer .col-md-3 {
+        flex-basis: 100%;
+        margin-bottom: 2rem;
     }
 }
