@@ -268,6 +268,19 @@ footer a:hover {
 
 .site-nav li {
     margin: 0 1.5rem;  /* Increased from 1rem */
+    position: relative;  /* Add this line */
+}
+
+/* Add this new rule for the divider */
+.site-nav li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1em;  /* Adjust this value to change the line height */
+    width: 1px;
+    background-color: #ccc;  /* Light grey color for the line */
 }
 
 .site-nav a {
@@ -309,7 +322,9 @@ footer a:hover {
 
     .site-nav li {
         margin: 0.5rem 0;
+        display: none;  /* Remove the divider on mobile */
     }
+
 }
 
 .emoji-electronics::before,
