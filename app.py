@@ -97,10 +97,19 @@ def post(path):
     recent_essays = get_recent_essays()
     most_visited = get_most_visited_essays()
     return render_template('post.html', page=page, recent_essays=recent_essays, most_visited_essays=most_visited)
-    
+
 @app.route('/about')
 def about():
     return render_template('about.html')
+    
+@app.route('/book-reads')
+def book_reads():
+    return render_template('book_reads.html')
+
+@app.route('/best-sources')
+def best_sources():
+    return render_template('best_sources.html')
+
 
 @app.context_processor
 def inject_common_data():
