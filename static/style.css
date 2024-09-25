@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-size: 16px;
 }
 
 main {
@@ -32,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Ensure this style takes precedence */
-.social-box h3 {
+.social-box h4 {
     font-size: 0.9rem;
     margin-bottom: 15px;  /* Added some bottom margin for better spacing */
 }
@@ -175,6 +176,8 @@ footer a:hover {
     color: #fff;
 }
 
+
+
 /* Existing styles... */
 
 * More specific styles for the about page */
@@ -238,24 +241,24 @@ footer a:hover {
 /* Header styles */
 .site-header {
     background-color: #f8f9fa;
-    padding: 1.5rem 0;  /* Reduced from 2rem */
+    padding: 1.5rem 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .site-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.2rem;  /* Slightly reduced from 2.5rem */
-    margin-bottom: 0.3rem;  /* Reduced from 0.5rem */
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
     color: #333;
-    font-weight:Bold;
+    font-weight: Bold;
 }
 
 .site-subtitle {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;  /* Slightly reduced from 1rem */
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 1rem;  /* Reduced from 1.5rem */
+    margin-bottom: 1rem;
 }
 
 .site-nav ul {
@@ -267,8 +270,8 @@ footer a:hover {
 }
 
 .site-nav li {
-    margin: 0 1.5rem;  /* Increased from 1rem */
-    position: relative;  /* Add this line */
+    margin: 0 1.5rem;
+    position: relative;
 }
 
 /* Add this new rule for the divider */
@@ -278,9 +281,9 @@ footer a:hover {
     right: -1.5rem;
     top: 50%;
     transform: translateY(-50%);
-    height: 1em;  /* Adjust this value to change the line height */
+    height: 1em;
     width: 1px;
-    background-color: #ccc;  /* Light grey color for the line */
+    background-color: #ccc;
 }
 
 .site-nav a {
@@ -299,13 +302,13 @@ footer a:hover {
 /* Emoji styling */
 .site-nav a::before {
     margin-right: 0.5rem;
-    font-size: 1.2em;  /* Slightly larger than text */
+    font-size: 1.2em;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .site-header {
-        padding: 1rem 0;  /* Further reduced for mobile */
+        padding: 1rem 0;
     }
 
     .site-title {
@@ -318,15 +321,25 @@ footer a:hover {
 
     .site-nav ul {
         flex-direction: column;
+        align-items: center;
     }
 
     .site-nav li {
         margin: 0.5rem 0;
-        display: none;  /* Remove the divider on mobile */
+        display: block; /* Change this from 'none' to 'block' */
     }
 
+    .site-nav li:not(:last-child)::after {
+        display: none; /* Remove the divider on mobile */
+    }
+
+    .site-nav a {
+        font-size: 1rem; /* Slightly larger font size for better touch targets */
+        padding: 0.2rem 0; /* Add some vertical padding for better touch targets */
+    }
 }
 
+/* Emoji styles */
 .emoji-electronics::before,
 .emoji-book::before,
 .emoji-models::before {
@@ -345,13 +358,157 @@ footer a:hover {
 .emoji-models::before {
     content: '🤖';
 }
-
 /* Existing styles continue below */
 
+/* Existing styles... */
+
+h1, .site-title {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+.container.mt-8 h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+
+/* Existing styles continue... */
 @media (max-width: 768px) {
     footer .col-md-3 {
         flex-basis: 100%;
         margin-bottom: 2rem;
 
     }
+    body {
+        font-size: 14px;  /* Reduced base font size for mobile */
+    }
+
+    h1, .site-title {
+        font-size: 1.8rem;  /* Smaller title for mobile */
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    h5{
+        font-size: 1.2rem;
+    }
+
+    .site-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .site-nav a {
+        font-size: 0.9rem;
+    }
+
+    .genre {
+        font-size: 0.8rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+
+    footer h4 {
+        font-size: 1rem;
+    }
+
+    .text-center {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;  /* Even smaller base font size for very small devices */
+    }
+
+    h1, .site-title {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+/* Month Archive Styles */
+.container.mt-8 {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.container.mt-8 article {
+    margin-bottom: 2rem;
+}
+
+.container.mt-8 article h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #0066cc;
+}
+
+.container.mt-8 article h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container.mt-8 article h3 a:hover {
+    text-decoration: underline;
+}
+
+.container.mt-8 .post-meta {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.container.mt-8 .post-meta .date,
+.container.mt-8 .post-meta .genre {
+    display: inline-block;
+    font-size: 0.9em;
+    font-style: italic;
+    color: rgba(102, 102, 102, 0.8); /* Reduced opacity */
+    margin: 0.2rem 0;
+}
+
+.container.mt-8 .post-meta .separator {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(102, 102, 102, 0.8);
+    margin: 0 0.5rem;
+    vertical-align: middle;
+}
 }
