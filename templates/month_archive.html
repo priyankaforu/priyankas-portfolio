@@ -1,1 +1,30 @@
+{% extends "base.html" %}
 
+{% block title %}Archive for {{ month | month_name }} {{ year }}{% endblock %}
+
+{% block content %}
+<div id="container" class="container mt-8">
+    <h1 class="mb-3" style="text-align: center; font-size:28px; margin-bottom: 3px; padding-bottom: 10px">Articles from {{ month | month_name }} {{ year }}</h1>
+
+    {% for article in articles %}
+        <article class="mb-3">
+            <h2 class="mb-1" style="text-align: center; font-weight: 800px;font-size:22px; text-decoration: underline; text-underline-offset: 3px">{{ article.title }}</h2>
+            
+            <div class="post-meta mb-3" style="text-align: center; font-style: italic; color: #666">
+                <span class="date me-3" style="font-size:0.9em">{{ article.date.strftime('%B %d, %Y') }}</span>
+                <span class="genre">{{ article.genre }}</span>
+            </div>
+
+            <div class="post-content">
+                {{ article.html|safe }}
+            </div>
+
+            <hr class="my-4">
+        </article>
+    {% else %}
+        <p style="text-align: center">No articles found for this month.</p>
+    {% endfor %}
+
+    <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
+</div>
+{% endblock %}
