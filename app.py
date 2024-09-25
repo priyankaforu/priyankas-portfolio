@@ -42,7 +42,6 @@ def get_recent_essays(limit=5):
     return [{'title': page.meta.get('title', 'Untitled'), 'path': page.path} for page in sorted_pages[:limit]]
 
 def get_most_visited_essays(limit=5):
-    print("Current visit counts:", visit_counts)  # Debugging line
     sorted_visits = sorted(visit_counts.items(), key=lambda x: x[1], reverse=True)
     most_visited = []
     for path, count in sorted_visits[:limit]:
@@ -53,15 +52,39 @@ def get_most_visited_essays(limit=5):
                 'path': path,
                 'visits': count
             })
-    print("Most visited essays:", most_visited)  # Debugging line
     return most_visited
+
+def get_available_months():
+    available_months = set()
+    for page in pages:
+        if 'date' in page.meta:
+            date = page.meta['date']
+            available_months.add((date.year, date.month))
+    return sorted(list(available_months), reverse=True)
 
 @app.route('/')
 def hello_priyanka():
     articles_by_year = get_articles_by_year()
     recent_essays = get_recent_essays()
     most_visited = get_most_visited_essays()
-    return render_template('home.html', articles_by_year=articles_by_year, recent_essays=recent_essays, most_visited_essays=most_visited)
+    available_months = get_available_months()
+    return render_template('home.html', articles_by_year=articles_by_year, recent_essays=recent_essays, most_visited_essays=most_visited, available_months=available_months)
+
+@app.route('/<int:year>/<int:month>/')
+def month_archive(year, month):
+    monthly_articles = []
+    for page in pages:
+        if 'date' in page.meta:
+            date = page.meta['date']
+            if date.year == year and date.month == month:
+                monthly_articles.append({
+                    'title': page.meta.get('title', 'Untitled'),
+                    'genre': page.meta.get('genre', ''),
+                    'date': date,
+                    'path': page.path,
+                    'html': page.html
+                })
+    return render_template('month_archive.html', year=year, month=month, articles=monthly_articles)
 
 @app.route('/<path:path>/')
 def post(path):
@@ -70,7 +93,6 @@ def post(path):
     # Increment visit count
     visit_counts[path] = visit_counts.get(path, 0) + 1
     save_visit_counts(visit_counts)
-    print(f"Incremented visit count for {path}: {visit_counts[path]}")  # Debugging line
     
     recent_essays = get_recent_essays()
     most_visited = get_most_visited_essays()
@@ -80,8 +102,14 @@ def post(path):
 def inject_common_data():
     return dict(
         recent_essays=get_recent_essays(),
-        most_visited_essays=get_most_visited_essays()
+        most_visited_essays=get_most_visited_essays(),
+        available_months=get_available_months()
     )
+
+# Custom Jinja2 filter for month names
+@app.template_filter('month_name')
+def month_name_filter(month_number):
+    return datetime(2000, month_number, 1).strftime('%B')
 
 if __name__ == '__main__':
     app.run(debug=True)
