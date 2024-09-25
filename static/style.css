@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 960px;
 }
 
 .container .social-box {
@@ -175,9 +175,71 @@ footer a:hover {
     color: #fff;
 }
 
+/* Existing styles... */
+
+* More specific styles for the about page */
+.about-container {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.about-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+}
+
+.about-row > .col-md-4,
+.about-row > .col-md-8 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+@media (min-width: 768px) {
+    .about-row {
+        margin-left: -20px !important;
+        margin-right: -20px !important;
+    }
+
+    .about-row > .col-md-4,
+    .about-row > .col-md-8 {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* Existing profile picture styles */
+.container .row .col-md-4 .img-fluid.profile-pic {
+    max-width: 100% !important;
+    height: auto !important;
+    border: 2px solid #6a6969 !important;
+    border-radius: 20px !important;
+    aspect-ratio: 3 / 4 !important;
+    object-fit: cover !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.social-links img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-links img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(23%) sepia(90%) saturate(1720%) hue-rotate(201deg) brightness(97%) contrast(101%);
+}
+
+
+/* Rest of the existing styles... */
+
+
 @media (max-width: 768px) {
     footer .col-md-3 {
         flex-basis: 100%;
         margin-bottom: 2rem;
+
     }
 }
