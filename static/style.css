@@ -312,23 +312,23 @@ footer a:hover {
     }
 }
 
-.emoji-about::before,
+.emoji-electronics::before,
 .emoji-book::before,
-.emoji-star::before {
+.emoji-models::before {
     margin-right: 0.5rem;
     font-size: 1.2em;
 }
 
-.emoji-about::before {
-    content: '👤';
+.emoji-electronics::before {
+    content: '🔋';
 }
 
 .emoji-book::before {
     content: '📚';
 }
 
-.emoji-star::before {
-    content: '🌟';
+.emoji-models::before {
+    content: '🤖';
 }
 
 /* Existing styles continue below */
