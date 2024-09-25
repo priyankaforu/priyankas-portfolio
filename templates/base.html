@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <header>
+        <!-- Add your header content here -->
+    </header>
+
     <main role="main">
         <div class="container my-5">
             {% block content %}{% endblock %}
@@ -30,42 +34,48 @@
                         {% endif %}
                     </ul>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <h4>Recent essays</h4>
-                    <ul class="list-unstyled">
-                        {% if recent_essays %}
-                            {% for essay in recent_essays %}
-                                <li><a href="{{ url_for('post', path=essay.path) }}" class="text-white">{{ essay.title }}</a></li>
-                            {% endfor %}
-                        {% else %}
-                            <li>No recent essays.</li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <h4>All essays</h4>
-                    <select id="monthSelector" class="form-select">
-                        <option value="">Select Month</option>
-                        {% for month in available_months %}
-                            <option value="{{ month }}">{{ month }}</option>
+
+            <div class="col-md-3 mb-3">
+                <h4>Recent essays</h4>
+                <ul>
+                    {% if recent_essays %}
+                        {% for essay in recent_essays %}
+                            <li><a href="{{ url_for('post', path=essay.path) }}" class="text-white">{{ essay.title }}</a></li>
                         {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <h4>Pages</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">About Me</a></li>
-                        <li><a href="{{ url_for('hello_priyanka') }}" class="text-white">All blog posts and essays</a></li>
-                    </ul>
-                </div>
+                    {% else %}
+                        <li>No recent essays.</li>
+                    {% endif %}
+                </ul>
             </div>
-            <div class="row mt-3">
-                <div class="col-12 text-center border-top pt-3">
-                    © 2024 Priyanka Pudi
-                </div>
+
+            <div class="col-md-3 mb-3">
+                <h4>All essays</h4>
+                <select id="monthSelector" onchange="window.location.href=this.value">
+                    <option value="">Select Month</option>
+                    {% for year, month in available_months %}
+                        <option value="{{ url_for('month_archive', year=year, month=month) }}">
+                            {{ year }} - {{ month | month_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <h4>Pages</h4>
+                <ul>
+                    <li><a href="#" class="text-white">About Me</a></li>
+                    <li><a href="{{ url_for('hello_priyanka') }}" class="text-white">All blog posts and essays</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 text-center border-top pt-3">
+                © 2024 Priyanka Pudi
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
