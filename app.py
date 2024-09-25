@@ -102,14 +102,17 @@ def post(path):
 def about():
     return render_template('about.html')
     
+@app.route('/electronics')
+def electronics():
+    return render_template('electronics.html')
+
 @app.route('/book-reads')
 def book_reads():
     return render_template('book_reads.html')
 
-@app.route('/best-sources')
-def best_sources():
-    return render_template('best_sources.html')
-
+@app.route('/working-models')
+def working_models():
+    return render_template('working_models.html')
 
 @app.context_processor
 def inject_common_data():
