@@ -48,14 +48,37 @@ h1, h2, h3, h4, h5, h6 {
 
 .bullet {
     display: inline-block;
-    width: 10px;  /* Increased size for better visibility */
+    min-width: 10px;  /* Changed from width to min-width */
     height: 10px;
-    border: 1px solid #0066cc;  /* Blue stroke */
-    border-radius: 50%;  /* Make it circular */
-    background-color: transparent;  /* No fill color */
-    margin-right: 10px;  /* Space between bullet and text */
-    vertical-align: middle;  /* Align with text */
+    border: 1px solid #0066cc;
+    border-radius: 50%;
+    background-color: transparent;
+    margin-right: 10px;
+    vertical-align: top;  /* Changed from middle to top */
+    margin-top: 5px;  /* Added to align with the first line of text */
+    flex-shrink: 0;  /* Prevent the bullet from shrinking */
 }
+
+/* New styles for mobile layout */
+@media (max-width: 768px) {
+    .d-flex.align-items-baseline.mb-2.justify-content-left {
+        display: flex;
+        align-items: flex-start !important;  /* Align items to the top */
+        flex-wrap: nowrap;  /* Prevent wrapping */
+    }
+
+    .text {
+        flex: 1;  /* Allow text to take up remaining space */
+        word-break: break-word;  /* Allow long words to break */
+    }
+
+    .genre {
+        display: block;  /* Move genre to a new line */
+        margin-left: 20px;  /* Align with the text */
+        margin-top: 5px;  /* Add some space above */
+    }
+}
+
 
 .genre {
     font-style: italic;
