@@ -49,8 +49,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .bullet {
     display: inline-block;
-    min-width: 7px;  /* Changed from width to min-width */
-    height: 7px;
+    min-width: 6px;  /* Changed from width to min-width */
+    height: 6px;
     border: 1px solid #0066cc;
     border-radius: 50%;
     background-color: transparent;
@@ -87,17 +87,18 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
 }
 
+/* ... previous styles ... */
+
 footer {
     background-color: #333;
-    padding: 3rem 1rem; /* Increased vertical padding, reduced horizontal padding */
+    padding: 3rem 1rem;
     color: #fff;
 }
 
 footer .container {
-    max-width: 1200px; /* Increased max-width for a more spacious layout */
-    margin-top:0;
-    margin-bottom:0;
-   
+    max-width: 1200px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 footer .row {
@@ -108,9 +109,9 @@ footer .row {
 
 footer .col-md-3 {
     flex: 1;
-    min-width: 200px; /* Ensure columns don't get too narrow */
+    min-width: 200px;
     margin-bottom: 2rem;
-    padding: 0 1rem; /* Add some horizontal padding to each column */
+    padding: 0 1rem;
 }
 
 footer h4 {
@@ -120,30 +121,29 @@ footer h4 {
     opacity: 1;
 }
 
-footer ul {
-    padding-left: 0;
-    list-style-type: none;
-    margin-bottom: 1rem;
+.footer-list {
+    display: flex;
+    flex-direction: column;
 }
 
-footer li {
-    margin-bottom: 0.5rem;
-}
-
-footer a {
+.footer-list a, .footer-list span {
     color: #fff;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.5rem;
 }
 
-footer a:hover {
+.footer-list a:hover {
     color: #f0f0f0;
     text-decoration: underline;
 }
 
 #monthSelector {
-    width: 100%;
+    width: 70%;
     background-color: #444;
     color: #fff;
     border: 1px solid #666;
@@ -176,6 +176,7 @@ footer a:hover {
     color: #fff;
 }
 
+/* ... rest of the styles ... */
 
 
 /* Existing styles... */
