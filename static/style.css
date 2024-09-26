@@ -49,8 +49,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .bullet {
     display: inline-block;
-    min-width: 6px;  /* Changed from width to min-width */
-    height: 6px;
+    min-width: 7px;  /* Changed from width to min-width */
+    height: 7px;
     border: 1px solid #0066cc;
     border-radius: 50%;
     background-color: transparent;
