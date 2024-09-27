@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div id="container" class="container mt-5">
-    <h1 class="mb-3"; style="text-align: center">{{ page.meta.title }}</h1>
-    
-    <div class="post-meta mb-4"; style="text-align: center; font-style: italic; color: #666">
-        <span class="date me-3"; style="font-size:0.9em">{{ page.meta.date.strftime('%B %d, %Y') }}</span>
-        <span class="genre">{{ page.meta.genre }}</span>
-    </div>
+<div id="container" class="container mt-4">
+    <h2 class="mb-3"; style="text-align: center">{{ page.meta.title }}</h2>
 
+    <div class="text-center mb-3">
+        <text class="text-muted">
+           ({{ page.meta.date.strftime('%B %d, %Y') }} | {{ page.meta.genre }})
+        </text>
+    </div>
     <div class="post-content">
         {{ page.html|safe }}
     </div>
