@@ -1,1 +1,200 @@
+{% extends "base.html" %}
+{% block content %}
 
+<div class="book-reads-container">
+    <h2 class="page-title">All about Book Summaries</h2>
+
+    <section class="intro">
+        <p>Hi 👋, I'm Priyanka Pudi. Welcome to my book reads section where I share my thoughts and learnings from the books I've read across various fields.</p>
+    </section>
+
+    <section class="categories">
+        <a href="{{ url_for('book_reads') }}" class="category-link {% if not category %}active{% endif %}">All</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('book_reads', category='science') }}" class="category-link {% if category == 'science' %}active{% endif %}">Science</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('book_reads', category='math-and-computers') }}" class="category-link {% if category == 'math-and-computers' %}active{% endif %}">Math & Computers</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('book_reads', category='Biographies') }}" class="category-link {% if category == 'Biographies' %}active{% endif %}">Biographies</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('book_reads', category='Scholars') }}" class="category-link {% if category == 'Scholars' %}active{% endif %}">Scholars</a>
+    </section>
+
+    {% if books %}
+        <section class="books">
+            <h2>Books{% if category %} - {{ category|replace('-', ' ')|title }}{% endif %}</h2>
+            <ul class="book-list">
+                {% for book in books %}
+                    <li>
+                        <span class="bullet me-1"></span>
+                        <a href="{{ url_for('post', path=book.path) }}">{{ book.meta.get('title', 'Untitled') }}</a>
+                        <span class="book-date">({{ book.meta.get('date').strftime('%B %d, %Y') if book.meta.get('date') else 'No date' }})</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+        <p class="no-content"; style="text-align:center">No books available for {% if category %}{{ category|replace('-', ' ')|title }}{% else %}this category{% endif %}.</p>
+    {% endif %}
+</div>
+
+<style>
+    .book-reads-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 2.0em;
+        color: #333;
+        margin-bottom: 28px;
+        text-align: center
+    }
+
+    .intro {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .categories {
+        margin-bottom: 30px;
+    }
+
+    .category-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 30px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .category-link {
+        color: #0066cc;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+    }
+
+    .category-link:hover, .category-link.active {
+        background-color: #0066cc;
+        color: white;
+        border-radius: 3px;
+    }
+
+    .separator {
+        color: #ccc;
+        margin: 0 5px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        color: #444;
+        margin-bottom: 6px;
+    }
+
+    .book-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .book-list li {
+        margin-bottom: 6px;
+    }
+
+    .book-list a {
+        color: #0066cc;
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: normal;
+    }
+
+    .book-list a:hover {
+        text-decoration: underline;
+    }
+
+    .book-date {
+        display: inline-block;
+        font-size: 0.9em;
+        color: #777;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .no-content {
+        color: #777;
+        font-style: italic;
+    }
+    .bullet {
+        display: inline-block;
+        min-width: 6px;  /* Changed from width to min-width */
+        height: 6px;
+        border: 1px solid #0066cc;
+        border-radius: 50%;
+        background-color: transparent;
+        margin-right: 10px;
+        vertical-align: top;  /* Changed from middle to top */
+        margin-top: 13px;  /* Added to align with the first line of text */
+        flex-shrink: 0;  /* Prevent the bullet from shrinking */
+    }
+
+
+    @media (max-width: 768px) {
+        .book-reads-container {
+            padding: 10px;
+        }
+        .page-title {
+            font-size: 1.5em;
+        }
+        .section.categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .category-link {
+            margin: 5px;
+        }
+
+        .category-link:hover, .category-link.active {
+        background-color: white;
+        color: #0066cc;
+        border-radius: 0px;
+        text-decoration:underline;
+        }
+
+        .category-link {
+        color: #0066cc;
+        text-decoration: none;
+        padding: 5px 10px;
+        }
+
+        .separator {
+            color: #ccc;
+            margin: 0 10px;
+        }
+        .books h2 {
+            font-size: 1.3em;
+        }
+
+        .bullet {
+            display: inline-block;
+            min-width: 6px;  /* Changed from width to min-width */
+            height: 6px;
+            border: 1px solid #0066cc;
+            border-radius: 50%;
+            background-color: transparent;
+            margin-right: 13px;
+            vertical-align: center;  /* Changed from middle to top */
+            margin-top: 10px;  /* Added to align with the first line of text */
+            flex-shrink: 0;  /* Prevent the bullet from shrinking */
+        }
+</style>
+
+{% endblock %}
