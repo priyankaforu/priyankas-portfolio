@@ -17,9 +17,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #000; /* Ensure headings are black for maximum opacity */
 }
 
-p{
+p {
     font-family: 'poppins';
     color: #000;
+    font-size: 16px;
 }
 
 .container {
@@ -34,12 +35,12 @@ p{
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    overflow: hidden;  /* This ensures the content doesn't overflow the rounded corners */
+    overflow: hidden;
 }
 
 /* Ensure this style takes precedence */
-.social-box h4 {
-    font-size: 0.9rem;
+.social-box h3 {
+    font-size: 1.2rem;
     margin-bottom: 15px;  /* Added some bottom margin for better spacing */
 }
 
@@ -390,25 +391,6 @@ footer h4 {
 .emoji-models::before {
     content: '🤖';
 }
-/* Existing styles continue below */
-
-/* Existing styles... */
-
-h1, .site-title {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 2rem;
-}
-
-h3 {
-    font-size: 1.75rem;
-}
-
-h4 {
-    font-size: 1.5rem;
-}
 
 .container.mt-8 h2 {
     font-size: 2rem;
@@ -461,13 +443,18 @@ h4 {
 
     h3 {
         font-size: 1.3rem;
+
+    }
+
+    p, .text-center{
+        font-size: 1.0rem;
     }
 
     h4 {
         font-size: 1.2rem;
     }
 
-    h5{
+    h5 {
         font-size: 1.2rem;
     }
 
@@ -484,11 +471,26 @@ h4 {
     }
 
     footer h4 {
-        font-size: 1rem;
+        font-size: 1.4rem;
+        text-decoration: underline;
     }
 
     .text-center {
         font-size: 0.8rem;
+    }
+
+    .social-box h3 {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .social-icon {
+        width: 20px;  /* Smaller icon size */
+        height: 20px;
+    }
+
+    .d-flex.justify-content-center.gap-4 {
+        gap: 1.8rem !important;
     }
 }
 
@@ -562,3 +564,4 @@ h4 {
     vertical-align: middle;
 }
 }
+
