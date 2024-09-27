@@ -38,20 +38,22 @@ def get_articles_by_year():
     return dict(sorted(articles_by_year.items(), reverse=True))
 
 def get_recent_essays(limit=5):
-    sorted_pages = sorted(pages, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    sorted_pages = sorted([p for p in pages if p.meta.get('type') != 'video'], key=lambda p: p.meta.get('date', datetime.min), reverse=True)
     return [{'title': page.meta.get('title', 'Untitled'), 'path': page.path} for page in sorted_pages[:limit]]
 
 def get_most_visited_essays(limit=5):
     sorted_visits = sorted(visit_counts.items(), key=lambda x: x[1], reverse=True)
     most_visited = []
-    for path, count in sorted_visits[:limit]:
+    for path, count in sorted_visits:
         page = pages.get(path)
-        if page:
+        if page and page.meta.get('type') != 'video':
             most_visited.append({
                 'title': page.meta.get('title', 'Untitled'),
                 'path': path,
                 'visits': count
             })
+            if len(most_visited) == limit:
+                break
     return most_visited
 
 def get_available_months():
@@ -103,16 +105,59 @@ def about():
     return render_template('about.html')
     
 @app.route('/electronics')
-def electronics():
-    return render_template('electronics.html')
+@app.route('/electronics/<category>')
+def electronics(category=None):
+    # Get all electronics pages
+    electronics_pages = [page for page in pages if page.meta.get('genre') == 'electronics']
+    
+    # Filter by category if specified
+    if category and category != 'all':
+        electronics_pages = [page for page in electronics_pages if page.meta.get('category') == category]
+    
+    # Separate articles and videos
+    articles = [page for page in electronics_pages if page.meta.get('type') != 'video']
+    videos = [page for page in electronics_pages if page.meta.get('type') == 'video']
+    
+    # Sort articles and videos by date
+    sorted_articles = sorted(articles, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    sorted_videos = sorted(videos, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    
+    return render_template('electronics.html', articles=sorted_articles, videos=sorted_videos, category=category)
 
 @app.route('/book-reads')
-def book_reads():
-    return render_template('book_reads.html')
+@app.route('/book-reads/<category>')
+def book_reads(category=None):
+    # Get all book pages
+    book_pages = [page for page in pages if page.meta.get('type') == 'book']
+    
+    # Filter by category if specified
+    if category and category != 'all':
+        book_pages = [page for page in book_pages if page.meta.get('category') == category]
+    
+    # Sort books by date
+    sorted_books = sorted(book_pages, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    
+    return render_template('book_reads.html', books=sorted_books, category=category)
 
 @app.route('/working-models')
-def working_models():
-    return render_template('working_models.html')
+@app.route('/working-models/<category>')
+def working_models(category=None):
+    # Get all working models pages
+    working_models_pages = [page for page in pages if page.meta.get('genre') == 'working-models']
+    
+    # Filter by category if specified
+    if category and category != 'all':
+        working_models_pages = [page for page in working_models_pages if page.meta.get('category') == category]
+    
+    # Separate articles and videos
+    articles = [page for page in working_models_pages if page.meta.get('type') != 'video']
+    videos = [page for page in working_models_pages if page.meta.get('type') == 'video']
+    
+    # Sort articles and videos by date
+    sorted_articles = sorted(articles, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    sorted_videos = sorted(videos, key=lambda p: p.meta.get('date', datetime.min), reverse=True)
+    
+    return render_template('working_models.html', articles=sorted_articles, videos=sorted_videos, category=category)
 
 @app.context_processor
 def inject_common_data():
