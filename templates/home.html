@@ -2,18 +2,18 @@
 {% block content %}
 <div class="text-center">
     <h3 class="mb-3">Welcome to the wisdom world...! Wacuspian</h1>
-    <p class="mb-3"; style="color:black; font-size: 16px">I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge</p>
+    <p class="mb-3";style="font-size: 18px">I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge</p>
     
     <div class="social-box mb-5">
         <h4 class="mb-3 fs-5"; style="font-weight:600">Social media accounts, where I post all my happenings</h4>
         <div class="d-flex justify-content-center gap-4">
-            <a href="https://www.instagram.com/priyankapudi.in/" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/wacusp/" class="social-icon" target="_blank" rel="noopener noreferrer">
                 <img src="{{ url_for('static', filename='instagram.svg') }}" width="24" height="24" alt="Instagram">
             </a>
-            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/Wa_Cusp" class="social-icon" target="_blank" rel="noopener noreferrer">
                 <img src="{{ url_for('static', filename='twitter-x.svg') }}" width="24" height="24" alt="Twitter">
             </a>
-            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@Wacusp" class="social-icon" target="_blank" rel="noopener noreferrer">
                 <img src="{{ url_for('static', filename='youtube.svg') }}" width="24" height="24" alt="YouTube">
             </a>
         </div>
@@ -37,5 +37,6 @@
     </div>
     {% endfor %}
 </div>
+
 {% endfor %}
 {% endblock %}
