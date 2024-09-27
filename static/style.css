@@ -17,6 +17,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #000; /* Ensure headings are black for maximum opacity */
 }
 
+p{
+    font-family: 'poppins';
+    color: #000;
+}
+
 .container {
     max-width: 960px;
 }
@@ -247,22 +252,11 @@ footer h4 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.site-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.2rem;
-    margin-bottom: 0.3rem;
-    color: #333;
-    font-weight: Bold;
+.site-nav {
+    position: relative;
 }
 
-.site-subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1rem;
-}
-
-.site-nav ul {
+.desktop-menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -270,21 +264,8 @@ footer h4 {
     justify-content: center;
 }
 
-.site-nav li {
+.desktop-menu li {
     margin: 0 1.5rem;
-    position: relative;
-}
-
-/* Add this new rule for the divider */
-.site-nav li:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 1em;
-    width: 1px;
-    background-color: #ccc;
 }
 
 .site-nav a {
@@ -299,6 +280,60 @@ footer h4 {
 .site-nav a:hover {
     color: #0066cc;
 }
+
+/* Mobile menu styles */
+.mobile-menu {
+    display: none;
+}
+
+.menu-toggle {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.mobile-menu-items {
+    display: none;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+}
+
+.mobile-menu-items.active {
+    display: flex;
+}
+
+.mobile-menu-items li {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mobile-menu-items li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+}
+
 
 /* Emoji styling */
 .site-nav a::before {
@@ -320,34 +355,30 @@ footer h4 {
         font-size: 0.8rem;
     }
 
-    .site-nav ul {
-        flex-direction: column;
-        align-items: center;
+    .desktop-menu {
+        display: none;
     }
 
-    .site-nav li {
-        margin: 0.5rem 0;
-        display: block; /* Change this from 'none' to 'block' */
+    .mobile-menu {
+        display: block;
     }
 
-    .site-nav li:not(:last-child)::after {
-        display: none; /* Remove the divider on mobile */
+    .menu-toggle.active + .mobile-menu-items {
+        display: flex;
     }
-
-    .site-nav a {
-        font-size: 1rem; /* Slightly larger font size for better touch targets */
-        padding: 0.2rem 0; /* Add some vertical padding for better touch targets */
     }
-}
 
 /* Emoji styles */
+.emoji-home::before,
 .emoji-electronics::before,
 .emoji-book::before,
 .emoji-models::before {
     margin-right: 0.5rem;
     font-size: 1.2em;
 }
-
+.emoji-home::before {
+    content: '🏠';
+}
 .emoji-electronics::before {
     content: '🔋';
 }
@@ -387,6 +418,28 @@ h4 {
 }
 
 
+@media (max-width: 768px) {
+    .site-header {
+        padding: 1rem 0;
+    }
+
+    .site-title {
+        font-size: 1.8rem;
+    }
+
+    .site-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+}
+
 /* Existing styles continue... */
 @media (max-width: 768px) {
     footer .col-md-3 {
@@ -416,10 +469,6 @@ h4 {
 
     h5{
         font-size: 1.2rem;
-    }
-
-    .site-subtitle {
-        font-size: 0.8rem;
     }
 
     .site-nav a {
