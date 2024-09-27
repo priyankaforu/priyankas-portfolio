@@ -1,1 +1,230 @@
+{% extends "base.html" %}
+{% block content %}
 
+<div class="electronics-container">
+    <h3 class="page-title">All about electronics</h3>
+
+    <section class="intro">
+        <p>Hi 👋, I'm Priyanka Pudi. Welcome to my electronics blog where I share what I learn and understand about the fascinating world of electronics.</p>
+    </section>
+
+    <section class="categories">
+        <a href="{{ url_for('electronics') }}" class="category-link {% if not category %}active{% endif %}">All</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('electronics', category='micro-controllers') }}" class="category-link {% if category == 'micro-controllers' %}active{% endif %}">Micro Controllers</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('electronics', category='micro-processors') }}" class="category-link {% if category == 'micro-processors' %}active{% endif %}">Micro Processors</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('electronics', category='basic-electronics') }}" class="category-link {% if category == 'basic-electronics' %}active{% endif %}">Basic Electronics</a>
+        <span class="separator">•</span>
+        <a href="{{ url_for('electronics', category='robotics') }}" class="category-link {% if category == 'robotics' %}active{% endif %}">Robotics</a>
+    </section>
+
+    {% if articles or videos %}
+        {% if articles %}
+            <section class="articles">
+                <h2>Articles{% if category %} - {{ category|replace('-', ' ')|title }}{% endif %}</h2>
+                <ul class="article-list">
+                    {% for article in articles %}
+                        <li>
+                            <span class="bullet me-1"></span>
+                            <a href="{{ url_for('post', path=article.path) }}">{{ article.meta.get('title', 'Untitled') }}</a>
+                            <span class="article-date">({{ article.meta.get('date').strftime('%B %d, %Y') if article.meta.get('date') else 'No date' }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+
+        {% if videos %}
+            <section class="videos">
+                <h2>Video Lessons{% if category %} - {{ category|replace('-', ' ')|title }}{% endif %}</h2>
+                <ul class="video-list">
+                    {% for video in videos %}
+                        <li>
+                            <span class="bullet me-1"></span>
+                            <a href="{{ video.meta.get('youtube_link', '#') }}" target="_blank" rel="noopener noreferrer">
+                                {{ video.meta.get('title', 'Untitled Video') }}
+                            </a>
+                            <span class="video-date">({{ video.meta.get('date').strftime('%B %d, %Y') if video.meta.get('date') else 'No date' }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    {% else %}
+        <p class="no-content">No content available for {% if category %}{{ category|replace('-', ' ')|title }}{% else %}this category{% endif %}.</p>
+    {% endif %}
+</div>
+<style>
+    .electronics-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 10px;
+        
+    }
+
+    .electronics-container .articles {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+    }
+
+    .page-title {
+        font-size: 2.0em;
+        color: #333;
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .intro {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+        color: #444;
+        margin-bottom: 6px;
+        padding-bottom: 5px;
+    }
+
+    .category-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 30px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .category-link {
+        color: #0066cc;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+    }
+
+    .category-link:hover, .category-link.active {
+        background-color: #0066cc;
+        color: white;
+        border-radius: 3px;
+    }
+
+    .separator {
+        color: #ccc;
+        margin: 0 5px;
+    }
+
+    .article-list, .video-list {
+        list-style-type: none;
+        padding: 0;
+        margin-left: 0px;
+    }
+
+    .article-list li, .video-list li {
+        margin-bottom: 1px;
+        
+    }
+
+    .article-list a, .video-list a {
+        color: #0066cc;
+        text-decoration: none;
+        font-size: 1.0em;
+        font-weight: normal;
+    }
+
+    .article-list a:hover, .video-list a:hover {
+        text-decoration: underline;
+    }
+
+    .article-date, .video-date, .article-category, .video-category {
+        display: inline-block;
+        font-size: 0.9em;
+        color: #777;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .article-category, .video-category {
+        background-color: #e0e0e0;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+    .no-content {
+        text-align: center;
+        font-style: italic;
+        color: #777;
+        margin-top: 20px;
+    }
+    .bullet {
+        display: inline-block;
+        min-width: 6px;  /* Changed from width to min-width */
+        height: 6px;
+        border: 1px solid #0066cc;
+        border-radius: 50%;
+        background-color: transparent;
+        margin-right: 10px;
+        vertical-align: top;  /* Changed from middle to top */
+        margin-top: 13px;  /* Added to align with the first line of text */
+        flex-shrink: 0;  /* Prevent the bullet from shrinking */
+    }
+
+    @media (max-width: 768px) {
+        .electronics-container {
+            padding: 10px;
+        }
+        .page-title {
+            font-size: 1.5em;
+        }
+        .section.categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .category-link {
+            margin: 5px 0;
+        }
+        .category-link:hover, .category-link.active {
+        background-color: white;
+        color: #0066cc;
+        border-radius: 0px;
+        text-decoration:underline
+        }
+
+        .category-link {
+        color: #0066cc;
+        text-decoration: none;
+        padding: 0px 12px;
+        }
+
+        .separator {
+            color: #ccc;
+            margin: 0 10px;
+        }
+        .articles h2, .videos h2 {
+            font-size: 1.3em;
+        }
+        .bullet {
+            display: inline-block;
+            min-width: 6px;  /* Changed from width to min-width */
+            height: 6px;
+            border: 1px solid #0066cc;
+            border-radius: 50%;
+            background-color: transparent;
+            margin-right: 13px;
+            vertical-align: center;  /* Changed from middle to top */
+            margin-top: 10px;  /* Added to align with the first line of text */
+            flex-shrink: 0;  /* Prevent the bullet from shrinking */
+        }
+    }
+</style>
+{% endblock %}
