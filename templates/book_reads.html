@@ -25,11 +25,13 @@
             <h2>Books{% if category %} - {{ category|replace('-', ' ')|title }}{% endif %}</h2>
             <ul class="book-list">
                 {% for book in books %}
-                    <li>
-                        <span class="bullet me-1"></span>
-                        <a href="{{ url_for('post', path=book.path) }}">{{ book.meta.get('title', 'Untitled') }}</a>
-                        <span class="book-date">({{ book.meta.get('date').strftime('%B %d, %Y') if book.meta.get('date') else 'No date' }})</span>
-                    </li>
+                <li>
+                   <span class="bullet me-1"></span>
+                   <a href="{{ url_for('post', path=book.path) }}">{{ book.title }}</a>
+                    <span class="book-info">
+                      ({{ book.genre }} | {{ book.date.strftime('%B %d, %Y') if book.date else 'No date' }})
+                    </span>
+                </li>
                 {% endfor %}
             </ul>
         </section>
@@ -119,12 +121,13 @@
         text-decoration: underline;
     }
 
-    .book-date {
+    .book-info {
         display: inline-block;
         font-size: 0.9em;
         color: #777;
         margin-top: 5px;
-        margin-right: 10px;
+        margin-right: 12px;
+        font-style: italic;
     }
 
     .no-content {
