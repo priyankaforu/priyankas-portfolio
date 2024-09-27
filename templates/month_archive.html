@@ -1,34 +1,30 @@
 {% extends "base.html" %}
 {% block title %}Archive for {{ month | month_name }} {{ year }}{% endblock %}
 {% block content %}
+<div class="container mt-3">
+    <h2 class="page-title"; style="text-align:center; margin-bottom: 1.5rem">Articles from {{ month | month_name }} {{ year }}</h2>
 
-<div id="container" class="container mt-8">
-    <h3 style="text-align:center; margin-bottom:24px">Articles from {{ month | month_name }} {{ year }}</h3>
-
-    {% for article in articles %}
-    <article class="mb-5">
-        <h4 style="text-align:center"><a href="{{ url_for('post', path=article.path) }}">{{ article.title }}</a></h4>
-
-        <div class="post-meta mb-3" style="text-align:center">
-            <span class="date">{{ article.date.strftime('%B %d, %Y') }}</span>
-            <span class="separator"></span>
-            <span class="genre">({{ article.genre }})</span>
-        </div>
-
-        <div class="post-content">
-            {{ article.html|safe }}
-        </div>
-    </article>
-
-    <hr class="my-5">
-
+    {% if articles %}
+        {% for article in articles %}
+            <article class="mb-4">
+                <h5 style="text-align: center"><a href="{{ url_for('post', path=article.path) }}" class="text-decoration-none">{{ article.title }}</a></h3>
+                <div class="text-center mb-3">
+                    <text class="text-muted">
+                        ({{ article.date.strftime('%B %d, %Y') }} | {{ article.genre }})
+                    </text>
+                </div>
+                    <div>
+                        {{ article.html|safe }}
+                    </div>
+            </article>
+            <hr>
+        {% endfor %}
     {% else %}
-    <p class="text-center">No articles found for this month.</p>
-    {% endfor %}
+        <p class="text-center">No articles found for this month.</p>
+    {% endif %}
 
-    <div>
-        <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link p-0">Back to Home</a>
+    <div class="text-start mt-3">
+        <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
     </div>
 </div>
-
 {% endblock %}
