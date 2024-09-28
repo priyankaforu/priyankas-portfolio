@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="text-center">
-    <h3 class="mb-3">Welcome to the wisdom world...! Wacuspian</h3>
+    <h3 class="welcome-message mb-3">Welcome to the wisdom world...! Wacuspian</h3>
     <p class="mb-3">I'm glad that you landed up here and I hope you enjoy some excerpts, from my knowledge</p>
     
     <div class="social-box mb-5">
@@ -26,13 +26,13 @@
 <div class="mb-4">
     <h4 class="h5 mb-1" style="text-align: left; margin-left: 20px">{{ year }}</h4>
     {% for article in articles %}
-    <div class="d-flex align-items-baseline mb-2 justify-content-left" style="margin-left: 20px">
+    <div class="d-flex align-items-baseline justify-content-left" style="margin-left: 20px">
         <div class="bullet me-2"></div>
-        <div class="text">
-            <a href="{{ url_for('post', path=article.path) }}" class="text-decoration-underline">{{ article.title }}</a>
-        </div>
+            <div class="text">
+                <a href="{{ url_for('post', path=article.path) }}" class="text-decoration-underline">{{ article.title }}</a>
+            </div>
         {% if article.genre %}
-        <div class="genre ms-2">({{ article.genre }})</div>
+            <span class="genre ms-2">({{ article.genre }})</span>
         {% endif %}
     </div>
     {% endfor %}
