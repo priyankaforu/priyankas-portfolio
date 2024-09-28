@@ -17,6 +17,20 @@ h1, h2, h3, h4, h5, h6 {
     color: #000; /* Ensure headings are black for maximum opacity */
 }
 
+.welcome-message {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.d-flex.align-items-baseline.justify-content-left {
+        display: flex;
+        align-items: center !important;  /* Align items to the top */
+        flex-wrap: nowrap; 
+        overflow:hidden; /* Prevent wrapping */
+        margin-bottom: 6px
+    }
+
 p {
     font-family: 'poppins';
     color: #000;
@@ -62,27 +76,33 @@ p {
     background-color: transparent;
     margin-right: 10px;
     vertical-align: top;  /* Changed from middle to top */
-    margin-top: 7px;  /* Added to align with the first line of text */
+    margin-top: 5px;  /* Added to align with the first line of text */
     flex-shrink: 0;  /* Prevent the bullet from shrinking */
 }
 
 /* New styles for mobile layout */
 @media (max-width: 768px) {
-    .d-flex.align-items-baseline.mb-2.justify-content-left {
+    .d-flex.align-items-baseline.justify-content-left {
         display: flex;
-        align-items: flex-start !important;  /* Align items to the top */
-        flex-wrap: nowrap;  /* Prevent wrapping */
+        align-items: center !important;  /* Align items to the top */
+        flex-wrap: nowrap; 
+        overflow:hidden; /* Prevent wrapping */
+        margin-bottom: 4px
     }
 
     .text {
-        flex: 1;  /* Allow text to take up remaining space */
-        word-break: break-word;  /* Allow long words to break */
+        flex:0 1 auto;  /* Allow text to take up remaining space */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        margin-right:5px;
+        font-size:14px;
     }
 
     .genre {
-        display: block;  /* Move genre to a new line */
-        margin-left: 20px;  /* Align with the text */
-        margin-top: 5px;  /* Add some space above */
+        font-size:0.8rem;
+        white-space:nowrap;
+        flex-shrink:0;
     }
 }
 
@@ -446,16 +466,26 @@ footer h4 {
 
     }
 
-    p, .text-center{
-        font-size: 1.0rem;
+    p, .text-center {
+        font-size: 13px
     }
 
     h4 {
         font-size: 1.2rem;
     }
 
+    h4, .h5 {
+
+        font-size: 18px;
+    }
+
     h5 {
         font-size: 1.2rem;
+    }
+
+    .welcome-message {
+        font-size: 1.1rem;
+        color: #006cff;
     }
 
     .site-nav a {
@@ -471,12 +501,12 @@ footer h4 {
     }
 
     footer h4 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         text-decoration: underline;
     }
 
     .text-center {
-        font-size: 0.8rem;
+        font-size: 1.0rem;
     }
 
     .social-box h3 {
