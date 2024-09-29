@@ -2,10 +2,10 @@
 {% block content %}
 
 <div id="container" class="container mt-4">
-    <h2 class="mb-3"; style="text-align: center">{{ page.meta.title }}</h2>
+    <h2 style="text-align:center">{{ page.meta.title }}</h2>
 
     <div class="text-center mb-3">
-        <text class="text-muted">
+        <text class="text-muted" style="font-style: italic;">
            ({{ page.meta.date.strftime('%B %d, %Y') }} | {{ page.meta.genre }})
         </text>
     </div>
@@ -15,5 +15,79 @@
 
     <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
 </div>
+<style>
+
+     h2 {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+        }
+     .post-content p {
+            margin-bottom: 1em;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1em auto;
+        }
+
+        .post-content blockquote {
+            border-left: 4px solid #0066cc;
+            padding-left: 1em;
+            margin-left: 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .post-content code {
+            background-color: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Styles for pre elements (code blocks) */
+        .post-content pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .post-content pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.9em;
+        }
+
+     
+     @media (max-width: 768px) {
+    
+        h2 {
+            font-size: 1.1rem;
+            text-decoration: underline;
+            margin-bottom: 2px;
+        }
+        .text-muted {
+            font-size: 0.8rem;
+            margin-top: 0px;
+        }
+
+         .post-content {
+          font-size: 14px;
+        }
+
+        .post-content h1 { font-size: 1.8em; }
+        .post-content h2 { font-size: 1.5em; }
+        .post-content h3 { font-size: 1.3em; }
+        .post-content h4 { font-size: 1.1em; }
+        .post-content h5, .post-content h6 { font-size: 1em; }
+       }
+</style>
 
 {% endblock %}
