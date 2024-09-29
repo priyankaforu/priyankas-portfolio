@@ -1,30 +1,144 @@
 {% extends "base.html" %}
-{% block title %}Archive for {{ month | month_name }} {{ year }}{% endblock %}
 {% block content %}
-<div class="container mt-3">
-    <h2 class="page-title"; style="text-align:center; margin-bottom: 1.5rem">Articles from {{ month | month_name }} {{ year }}</h2>
-
+<div style="padding: 10px;text-align: center">
+    <h2>Articles from {{ month | month_name }} {{ year }}</h2>
+</div>
+    
     {% if articles %}
         {% for article in articles %}
-            <article class="mb-4">
-                <h5 style="text-align: center"><a href="{{ url_for('post', path=article.path) }}" class="text-decoration-none">{{ article.title }}</a></h3>
+            <article class="mb-5">
+                <h5 class="text-center"><a href="{{ url_for('post', path=article.path) }}">{{ article.title }}</a></h5>
                 <div class="text-center mb-3">
-                    <text class="text-muted">
-                        ({{ article.date.strftime('%B %d, %Y') }} | {{ article.genre }})
-                    </text>
+                    <span class="text-muted">({{ article.date.strftime('%B %d, %Y') }} | {{ article.genre }})</span>
                 </div>
-                    <div>
-                        {{ article.html|safe }}
-                    </div>
+                <div class="article-content">
+                    {{ article.html|safe }}
+                </div>
             </article>
             <hr>
         {% endfor %}
     {% else %}
         <p class="text-center">No articles found for this month.</p>
     {% endif %}
-
+    
     <div class="text-start mt-3">
         <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
     </div>
 </div>
+
+<style>
+    /* General styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', sans-serif;
+        color: #000;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+
+    /* Article styles */
+    .text-center {
+        text-align: center;
+    }
+
+    .text-muted {
+        font-style: italic;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    article {
+        margin-bottom: 2rem;
+    }
+
+    article h5 {
+        margin-bottom: 0.5rem;
+    }
+
+    article h5 a {
+        color: #0066cc;
+        text-decoration: none;
+        font-size: 1.3rem;
+    }
+
+    article h5 a:hover {
+        text-decoration: underline;
+    }
+
+    .article-content {
+        margin-top: 1rem;
+    }
+
+    hr {
+        margin: 2rem 0;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+
+    /* Navigation */
+    .btn-link {
+        color: #0066cc;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 10px;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+        }
+
+        article h5 {
+            margin-bottom: 2px;
+        }
+
+        article h5 a {
+            font-size: 1.2rem;
+            text-decoration: underline;
+        }
+
+        .container .text-center .text-muted {
+            font-size: 0.8rem !important;
+        }
+
+    }
+
+    @media (max-width: 576px) {
+        .page-title {
+            font-size: 1.5rem;
+        }
+
+        article h5 {
+            font-size: 1.1rem;
+        }
+
+        .container .text-center .text-muted {
+            font-size: 0.7rem !important;
+        }
+
+        .article-content {
+            font-size: 0.9rem;
+        }
+    }
+</style>
 {% endblock %}
