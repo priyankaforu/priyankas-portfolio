@@ -2,7 +2,7 @@
 {% block content %}
 
 <div id="container" class="container mt-4">
-    <h2 style="text-align:center">{{ page.meta.title }}</h2>
+    <h2 style="text-align:center;">{{ page.meta.title }}</h2>
 
     <div class="text-center mb-3">
         <text class="text-muted" style="font-style: italic;">
@@ -16,14 +16,17 @@
     <a href="{{ url_for('hello_priyanka') }}" class="btn btn-link mt-4 p-0">Back to Home</a>
 </div>
 <style>
+        
+        h2 {
+                font-size: 1.5em;
+                margin-bottom: 6px;
+                color: #1d6fc2;
+            }
 
-     h2 {
-            font-size: 1.3rem;
-            margin-bottom: 6px;
-        }
-     .post-content p {
-            margin-bottom: 1em;
-        }
+
+        .post-content p {
+                margin-bottom: 1em;
+            }
 
         .post-content img {
             max-width: 100%;
@@ -68,13 +71,13 @@
      @media (max-width: 768px) {
     
         h2 {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             text-decoration: underline;
             margin-bottom: 2px;
         }
         .text-muted {
-            font-size: 0.8rem;
-            margin-top: 0px;
+            font-size: 0.7rem;
+            margin-top: 1px;
         }
 
          .post-content {
