@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from flask_flatpages import FlatPages
 from flask_caching import Cache
 from datetime import datetime
@@ -208,6 +208,11 @@ def inject_common_data():
 @app.template_filter('month_name')
 def month_name_filter(month_number):
     return datetime(2000, month_number, 1).strftime('%B')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     app.run(debug=True)
